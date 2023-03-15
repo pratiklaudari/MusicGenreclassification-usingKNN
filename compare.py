@@ -2,7 +2,8 @@ import csv
 import math
 import librosa
 import numpy as nd
-genre=['adhunik','bhajan','dohari','selo']
+genre=['adhunik','bhajan','bhojpuri','classical','dohari','gazal','newa','pop','rock','selo']
+
 
 def classifier(filename):
     signal,rate=librosa.load(filename)
@@ -187,7 +188,7 @@ def classifier(filename):
             dis=dis+diff[i*21+j]
         square=math.sqrt(dis)
         distance.append(square)
-    no_of_songs_indataset=10 
+    no_of_songs_indataset=40 
 
     l_distance=min(distance)
     position=1
@@ -205,3 +206,16 @@ def classifier(filename):
         return(genre[2])
     elif position<=4*no_of_songs_indataset:
         return(genre[3])
+    elif position<=5*no_of_songs_indataset:
+        return(genre[4])
+    elif position<=6*no_of_songs_indataset:
+        return(genre[5])
+    if position<=7*no_of_songs_indataset:
+        return(genre[6])
+    elif position<=8*no_of_songs_indataset:
+        return(genre[7])
+    elif position<=9*no_of_songs_indataset:
+        return(genre[8])
+    elif position<=10*no_of_songs_indataset:
+        return(genre[9])
+    
