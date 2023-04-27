@@ -189,33 +189,57 @@ def classifier(filename):
         square=math.sqrt(dis)
         distance.append(square)
     no_of_songs_indataset=40 
+    pos=[]
+    temp=distance
+    l_distance=min(temp)
 
-    l_distance=min(distance)
     position=1
     for i in range(len(distance)):
         if distance[i]==l_distance:
-            print(position)
+            print('found')
             break
         else:
             position=position+1
-    if position<=1*no_of_songs_indataset:
-        return(genre[0])
-    elif position<=2*no_of_songs_indataset:
-        return(genre[1])
-    elif position<=3*no_of_songs_indataset:
-        return(genre[2])
-    elif position<=4*no_of_songs_indataset:
-        return(genre[3])
-    elif position<=5*no_of_songs_indataset:
-        return(genre[4])
-    elif position<=6*no_of_songs_indataset:
-        return(genre[5])
-    if position<=7*no_of_songs_indataset:
-        return(genre[6])
-    elif position<=8*no_of_songs_indataset:
-        return(genre[7])
-    elif position<=9*no_of_songs_indataset:
-        return(genre[8])
-    elif position<=10*no_of_songs_indataset:
-        return(genre[9])
-    
+    pos1=position
+    pos.append(pos1)
+
+    temp.remove(l_distance)
+    l_distance=min(temp)
+    position=1
+    for i in range(len(distance)):
+        if distance[i]==l_distance:
+            print('found')
+            break
+        else:
+            position=position+1
+    pos2=position
+    pos.append(pos2)
+
+    temp.remove(l_distance)
+    l_distance=min(temp)
+    position=1
+    for i in range(len(distance)):
+        if distance[i]==l_distance:
+            print('found')
+            break
+        else:
+            position=position+1
+    pos3=position
+    pos.append(pos3)
+
+    gen=[]
+    for i in range(len(pos)):
+        for j in range(11):
+            if pos[i]<=j*no_of_songs_indataset:
+                genr=genre[j-1]
+                gen.append(genr)
+                break
+    print(gen)
+    if gen[0]==gen[1] and gen[0]==gen[2]:
+        return(gen[0])
+    elif gen[0]==gen[1] or gen[0]==gen[2]:
+        return(gen[0])
+    elif gen[1]==gen[2]:
+        return(gen[1])
+    else:
+        return(gen[0])
